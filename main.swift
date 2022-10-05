@@ -9,49 +9,22 @@ let unsortedIntegers = [5, 1, 4, 2, 8]
 
 let STDIN = (readLine(strippingNewline: true))?.split {$0 == " "}.map (String.init)
 
-func swap(strings:inout [String], firstIndex: Int, secondIndex: Int) {
-    
-    let temp = strings[firstIndex]
-    strings[firstIndex] = strings[secondIndex]
-    strings[secondIndex] = temp
-    
-}
+func bubbleSort(_ arr: [String]) {
+    var dataSet = arr
+    let last_position = dataSet.count - 1
+    var swap = true
+    while swap == true {
+        swap = false
+        for i in 0..<last_position {
+            if dataSet[i] > dataSet[i + 1] {
+                let temp = dataSet [i + 1]
+                dataSet [i + 1] = dataSet[i]
+                dataSet[i] = temp
 
-func bubbleSort(list: [String]) -> [String] {
-    var sortingIntegers = list
-
-    var totalSwapCount = 0
-    var swapCountPerPass: Int
-    var passNumber = 0
-
-    print("Pass: 0, Swaps: 0/0, Array: \(sortingIntegers)")
-    
-    repeat {
-        swapCountPerPass = 0
-        
-        
-
-        for i in 0 ..< sortingIntegers.count - 1 {
-            let thisIndex = i
-            let nextIndex = i + 1
-
-            let thisElement = sortingIntegers[thisIndex]
-            let nextElement = sortingIntegers[nextIndex]
-            
-            if thisElement > nextElement {
-                swap(strings: &sortingIntegers, firstIndex: thisIndex, secondIndex: nextIndex)
-
-                totalSwapCount += 1
-                swapCountPerPass += 1
+                swap = true
             }
-            
         }
-        passNumber += 1
-
-        print("Pass: \(passNumber), Swaps: \(swapCountPerPass)/\(totalSwapCount), Array: \(sortingIntegers)")
-    } while swapCountPerPass > 0 
-
-    return sortingIntegers
+    }
 }
 
-let sortedIntegers = bubbleSort(list: STDIN!)
+print(bubbleSort(STDIN!))
